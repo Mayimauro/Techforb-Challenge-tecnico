@@ -1,9 +1,10 @@
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
+import {IniSesPageComponent} from './Usuario/inicioSesion/ini-ses-page/ini-ses-page.component';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet],
+  imports: [RouterOutlet, IniSesPageComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
