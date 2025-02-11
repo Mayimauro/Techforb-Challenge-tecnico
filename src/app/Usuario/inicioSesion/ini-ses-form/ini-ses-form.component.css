@@ -1,0 +1,135 @@
+/* Estilo general del formulario */
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  width: 100%;
+  max-width: 350px;
+  padding: 20px;
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Etiquetas */
+label {
+  font-weight: bold;
+  color: #333;
+}
+
+/* Campos de entrada */
+input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+  transition: border-color 0.3s;
+}
+
+input:focus {
+  border-color: #007bff;
+  outline: none;
+}
+
+/* Contenedor de la contraseña */
+.password-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.password-container input {
+  flex: 1;
+  padding-right: 40px;
+}
+
+/* Botón para ver la contraseña */
+.password-container button {
+  position: absolute;
+  right: 10px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 18px;
+  color: #555;
+}
+
+.password-container button:hover {
+  color: #000;
+}
+
+/* Botón de inicio de sesión */
+button[type="submit"] {
+  width: 100%;
+  padding: 10px;
+  background: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+button[type="submit"]:hover {
+  background: #0056b3;
+}
+
+.container {
+  display: flex;
+  height: 100vh;
+}
+
+.left {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: coral;
+}
+
+
+.left img {
+  max-width: 100%;
+  height: auto;
+}
+
+.right {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #ffffff;
+}
+.left {
+  flex: 1;
+  background-size: cover;
+  color: white;
+  padding: 50px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.left h1 {
+  font-size: 2rem;
+  margin-bottom: 20px;
+}
+
+.left p {
+  font-size: 1rem;
+  margin-bottom: 20px;
+}
+
+.feature {
+  display: flex;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.feature .icon {
+  font-size: 24px;
+  margin-right: 10px;
+}

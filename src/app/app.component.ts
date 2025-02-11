@@ -5,6 +5,7 @@ import {IniSesPageComponent} from './Usuario/inicioSesion/ini-ses-page/ini-ses-p
 @Component({
   selector: 'app-root',
   imports: [RouterOutlet, IniSesPageComponent],
+  standalone: true,
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })

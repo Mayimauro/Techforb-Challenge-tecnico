@@ -1,0 +1,103 @@
+<div class="container">
+  <div class="left">
+    <div class="left">
+      <div *ngIf="!mostrarRegistrarseForm">
+        <h1>Iniciar sesión</h1>
+        <p>
+          Nos alegra tenerte de vuelta y estamos listos para atender tus necesidades.
+          Inicia sesión y continúa aprovechando al máximo nuestra plataforma.
+        </p>
+      </div>
+      <div *ngIf="mostrarRegistrarseForm">
+        <h1>Registrate</h1>
+        <p>
+          ¡Bienvenido! estamos encantados de que qiueras unirte a nuestra plataforma.
+        </p>
+      </div>
+
+      <div class="feature">
+        <span class="icon">📊</span>
+        <div>
+          <strong>Monitoreo integral</strong>
+          <p>Administra, monitorea múltiples plantas de forma centralizada</p>
+        </div>
+      </div>
+      <div class="feature">
+        <span class="icon">🔔</span>
+        <div>
+          <strong>Notificaciones en tiempo real</strong>
+          <p>Recibe notificaciones en tiempo real sobre las mediciones</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="right">
+    <div>
+      <form [formGroup]="formularioInicioSesion" (ngSubmit)="verificarDatos()" *ngIf="!mostrarRegistrarseForm">
+        <h1>Portal de monitoreo</h1>
+        <h2>Iniciar sesion</h2>
+        <label>Email:</label>
+        <input type="email" formControlName="email">
+
+        <label>Contraseña:</label>
+        <div class="password-container">
+          <input [type]="mostrarContrasena ? 'text' : 'password'" formControlName="contrasenia">
+          <button type="button" (click)="alternarVisibilidad()">
+            {{ mostrarContrasena ? '👁️' : '🚫' }}
+          </button>
+        </div>
+
+        <div>
+          <a style="cursor: pointer" >¿olvidaste tu contraseña?</a>
+          <button type="submit">Iniciar sesión</button>
+          <div>
+            <p>Protegido por ReCaptcha sujeto a la politica de privacidad y
+              Condiciones </p>
+          </div>
+        </div>
+      </form>
+      <div *ngIf="!mostrarRegistrarseForm">
+        <p>No tienes una cuenta?</p> <a style="cursor: pointer; color: #007bff" (click)="mostrarRegistrarseForm=true">Registrarse</a>
+      </div>
+
+    </div>
+
+    <div>
+      <form [formGroup]="formularioRegistro" (ngSubmit)="verificarDatosRegistro()" *ngIf="mostrarRegistrarseForm">
+        <h1>Portal de monitoreo</h1>
+        <h2>Registrarse</h2>
+        <label>Nombre de usuario:</label>
+        <input type="text" formControlName="nombreUsuario">
+
+        <label>Email:</label>
+        <input type="email" formControlName="email">
+
+        <label>Contraseña:</label>
+        <div class="password-container">
+          <input [type]="mostrarContrasena ? 'text' : 'password'" formControlName="contrasenia">
+          <button type="button" (click)="alternarVisibilidad()">
+            {{ mostrarContrasena ? '👁️' : '🚫' }}
+          </button>
+        </div>
+        <label>Repetir contraseña:</label>
+        <div class="password-container">
+          <input type="password" formControlName="repetirContrasenia">
+        </div>
+
+        <div>
+          <button type="submit">Registrarse</button>
+          <div>
+            <p>Protegido por ReCaptcha sujeto a la politica de privacidad y
+              Condiciones </p>
+          </div>
+        </div>
+      </form>
+
+      <div *ngIf="mostrarRegistrarseForm">
+        <p>ya tienes una cuenta?</p> <a style="cursor: pointer; color: #007bff" (click)="mostrarRegistrarseForm=false">Iniciar sesion</a>
+      </div>
+
+    </div>
+  </div>
+</div>
+
