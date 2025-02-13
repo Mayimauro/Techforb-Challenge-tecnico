@@ -1,3 +1,4 @@
 export const environment = {
-  urlUsuariosBDD: "http://localhost:8080/api/usuarios/"
+  apiURLBD: "http://localhost:8080/auth/",
+  urlTarjetasClima: "http://localhost:8080/api/v1",
 };

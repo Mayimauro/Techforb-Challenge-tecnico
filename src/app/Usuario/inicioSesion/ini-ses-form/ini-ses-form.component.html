@@ -11,7 +11,7 @@
       <div *ngIf="mostrarRegistrarseForm">
         <h1>Registrate</h1>
         <p>
-          ¡Bienvenido! estamos encantados de que qiueras unirte a nuestra plataforma.
+          ¡Bienvenido! Estamos encantados de que quieras unirte a nuestra plataforma.
         </p>
       </div>
 
@@ -33,11 +33,16 @@
   </div>
   <div class="right">
     <div>
-      <form [formGroup]="formularioInicioSesion" (ngSubmit)="verificarDatos()" *ngIf="!mostrarRegistrarseForm">
+      <form [formGroup]="formularioInicioSesion" (ngSubmit)="verificarDatosLogIn()" *ngIf="!mostrarRegistrarseForm">
         <h1>Portal de monitoreo</h1>
-        <h2>Iniciar sesion</h2>
-        <label>Email:</label>
-        <input type="email" formControlName="email">
+        <h2>Iniciar sesión</h2>
+
+        <label>Username:</label>
+        <input type="text" formControlName="username">
+        <div *ngIf="formularioInicioSesion.controls['username'].invalid && formularioInicioSesion.controls['username'].touched">
+          <p *ngIf="formularioInicioSesion.controls['username'].errors?.['required']">El email es obligatorio.</p>
+          <p *ngIf="formularioInicioSesion.controls['username'].errors?.['username']">El email no es válido.</p>
+        </div>
 
         <label>Contraseña:</label>
         <div class="password-container">
@@ -46,31 +51,41 @@
             {{ mostrarContrasena ? '👁️' : '🚫' }}
           </button>
         </div>
+        <div *ngIf="formularioInicioSesion.controls['contrasenia'].invalid && formularioInicioSesion.controls['contrasenia'].touched">
+          <p *ngIf="formularioInicioSesion.controls['contrasenia'].errors?.['required']">La contraseña es obligatoria.</p>
+        </div>
 
         <div>
-          <a style="cursor: pointer" >¿olvidaste tu contraseña?</a>
+          <a style="cursor: pointer">¿Olvidaste tu contraseña?</a>
           <button type="submit">Iniciar sesión</button>
           <div>
-            <p>Protegido por ReCaptcha sujeto a la politica de privacidad y
-              Condiciones </p>
+            <p>Protegido por ReCaptcha sujeto a la política de privacidad y condiciones.</p>
           </div>
         </div>
       </form>
       <div *ngIf="!mostrarRegistrarseForm">
-        <p>No tienes una cuenta?</p> <a style="cursor: pointer; color: #007bff" (click)="mostrarRegistrarseForm=true">Registrarse</a>
+        <p>¿No tienes una cuenta?</p>
+        <a style="cursor: pointer; color: #007bff" (click)="mostrarRegistrarseForm=true">Registrarse</a>
       </div>
-
     </div>
 
     <div>
       <form [formGroup]="formularioRegistro" (ngSubmit)="verificarDatosRegistro()" *ngIf="mostrarRegistrarseForm">
         <h1>Portal de monitoreo</h1>
         <h2>Registrarse</h2>
+
         <label>Nombre de usuario:</label>
-        <input type="text" formControlName="nombreUsuario">
+        <input type="text" formControlName="username">
+        <div *ngIf="formularioRegistro.controls['username'].invalid && formularioRegistro.controls['username'].touched">
+          <p>El nombre de usuario es obligatorio.</p>
+        </div>
 
         <label>Email:</label>
         <input type="email" formControlName="email">
+        <div *ngIf="formularioRegistro.controls['email'].invalid && formularioRegistro.controls['email'].touched">
+          <p *ngIf="formularioRegistro.controls['email'].errors?.['required']">El email es obligatorio.</p>
+          <p *ngIf="formularioRegistro.controls['email'].errors?.['email']">El email no es válido.</p>
+        </div>
 
         <label>Contraseña:</label>
         <div class="password-container">
@@ -79,25 +94,31 @@
             {{ mostrarContrasena ? '👁️' : '🚫' }}
           </button>
         </div>
+        <div *ngIf="formularioRegistro.controls['contrasenia'].invalid && formularioRegistro.controls['contrasenia'].touched">
+          <p *ngIf="formularioRegistro.controls['contrasenia'].errors?.['required']">La contraseña es obligatoria.</p>
+          <p *ngIf="formularioRegistro.controls['contrasenia'].errors?.['minlength']">Debe tener al menos 8 caracteres.</p>
+        </div>
+
         <label>Repetir contraseña:</label>
         <div class="password-container">
           <input type="password" formControlName="repetirContrasenia">
+        </div>
+        <div *ngIf="formularioRegistro.hasError('noCoincide') && formularioRegistro.controls['repetirContrasenia'].touched">
+          <p>Las contraseñas no coinciden.</p>
         </div>
 
         <div>
           <button type="submit">Registrarse</button>
           <div>
-            <p>Protegido por ReCaptcha sujeto a la politica de privacidad y
-              Condiciones </p>
+            <p>Protegido por ReCaptcha sujeto a la política de privacidad y condiciones.</p>
           </div>
         </div>
       </form>
 
       <div *ngIf="mostrarRegistrarseForm">
-        <p>ya tienes una cuenta?</p> <a style="cursor: pointer; color: #007bff" (click)="mostrarRegistrarseForm=false">Iniciar sesion</a>
+        <p>¿Ya tienes una cuenta?</p>
+        <a style="cursor: pointer; color: #007bff" (click)="mostrarRegistrarseForm=false">Iniciar sesión</a>
       </div>
-
     </div>
   </div>
 </div>
-

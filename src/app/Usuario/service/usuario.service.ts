@@ -1,27 +1,48 @@
 import { Injectable } from '@angular/core';
 import {environment} from '../../../environments/environment.development';
 import {HttpClient} from '@angular/common/http';
-import {Observable} from 'rxjs';
+import {Observable, tap} from 'rxjs';
 import {UsuarioInterface} from '../interface/usuario.interface';
+import {CookieService} from 'ngx-cookie-service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UsuarioService {
 
-  private apiURL = environment.urlUsuariosBDD;
+  private apiUrl = environment.apiURLBD;
 
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private cookieService: CookieService) {}
 
-  getUsuarioByEmail(email: String): Observable<UsuarioInterface> {
-    return this.http.get<UsuarioInterface>(this.apiURL+email);
+
+  login(credentials: { username: string; password: string }): Observable<any> {
+    return this.http.post<{ token: string }>(`${this.apiUrl}login`, credentials).pipe(
+      tap(response => {
+        this.guardarToken(response.token);
+      })
+    );
   }
 
-  saveUser(UsuarioNuevo: UsuarioInterface): Observable<any> {
-    return this.http.post(this.apiURL, UsuarioNuevo);
+  register(user: { username: string; email: string; password: string }): Observable<any> {
+    return this.http.post<{ token: string }>(`${this.apiUrl}register`, user).pipe(
+      tap(response => {
+        this.guardarToken(response.token);
+      })
+    );
   }
 
+  logout(): void {
+    this.cookieService.delete('authToken', '/');
+  }
+
+  private guardarToken(token: string): void {
+    this.cookieService.set('authToken', token, { path: '/', secure: true, sameSite: 'Lax' });
+  }
+
+  getToken(): string {
+    return this.cookieService.get('authToken');
+  }
 
 
 }
