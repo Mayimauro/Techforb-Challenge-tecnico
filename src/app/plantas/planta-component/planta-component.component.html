@@ -1,0 +1,49 @@
+<div class="dashboard-container">
+  <div class="dashboard">
+    <div class="card small">
+      <h3>Lecturas OK</h3>
+      <p>Dato importante aquí</p>
+    </div>
+    <div class="card small">
+      <h3>Alertas Medias</h3>
+      <p>Otro dato aquí</p>
+    </div>
+    <div class="card small">
+      <h3>Alertas Rojas</h3>
+      <p>Información clave</p>
+    </div>
+    <div class="card small">
+      <h3>Sensores Deshabilitados</h3>
+      <p>Más datos</p>
+    </div>
+
+    <!-- Información General con Tabla -->
+    <div class="card large">
+      <h2>Plantas</h2>
+      <button (click)="abrirModal()">Crear nueva planta +</button>
+      <table class="info-table">
+        <thead>
+        <tr>
+          <th>Pain</th>
+          <th>Nombre de la planta</th>
+          <th>Lecturas ok</th>
+          <th>Alertas medias</th>
+          <th>Alertas rojas</th>
+          <th></th>
+        </tr>
+        </thead>
+        <tbody>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Información de la Planta Seleccionada -->
+    <div class="card large">
+      <h2>Información Planta Seleccionada</h2>
+      <p>Aquí puedes agregar un resumen general o información más detallada sobre la planta seleccionada.</p>
+    </div>
+  </div>
+</div>
+
+<!-- Modal (solo se muestra si isModalOpen es true) -->
+<app-nueva-planta-modal *ngIf="isModalOpen" (closeModal)="cerrarModal()"></app-nueva-planta-modal>

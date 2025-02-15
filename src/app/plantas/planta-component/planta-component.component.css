@@ -1,0 +1,68 @@
+/* Estilos generales */
+.dashboard-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: calc(100% - 250px);
+  margin-left: 250px;
+  margin-top: 70px;
+  height: calc(100vh - 70px);
+  padding: 20px;
+}
+
+.dashboard {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-gap: 20px;
+  width: 70%;
+  max-width: 900px;
+}
+
+.card {
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+.small {
+  height: 100px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.large {
+  grid-column: span 2;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+/* Tabla */
+.info-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 15px;
+}
+
+.info-table th, .info-table td {
+  border: 1px solid #ddd;
+  padding: 10px;
+  text-align: center;
+}
+
+.info-table th {
+  background: #f4f4f4;
+  font-weight: bold;
+}
+
+.info-table tr:nth-child(even) {
+  background: #f9f9f9;
+}
+
+.info-table tr:hover {
+  background: #e6e6e6;
+}

@@ -1,0 +1,28 @@
+<div class="modal">
+  <div class="modal-content">
+    <h2>Agregar Nueva Planta</h2>
+
+    <form [formGroup]="formularioPlantaNueva" (ngSubmit)="onSubmit()">
+      <div class="form-group">
+        <label for="nombre">Nombre</label>
+        <input id="nombre" type="text" formControlName="nombre" placeholder="Ingrese el nombre" />
+        <small *ngIf="formularioPlantaNueva.controls.nombre.invalid && formularioPlantaNueva.controls.nombre.touched">
+          Nombre es obligatorio
+        </small>
+      </div>
+
+      <div class="form-group">
+        <label for="ubicacion">Ubicación</label>
+        <input id="ubicacion" type="text" formControlName="ubicacion" placeholder="Ingrese la ubicación" />
+        <small *ngIf="formularioPlantaNueva.controls.ubicacion.invalid && formularioPlantaNueva.controls.ubicacion.touched">
+          Ubicación es obligatoria
+        </small>
+      </div>
+
+      <div class="modal-buttons">
+        <button type="submit" [disabled]="formularioPlantaNueva.invalid">Guardar</button>
+        <button type="button" class="cancel" (click)="cerrarModal()">Cancelar</button>
+      </div>
+    </form>
+  </div>
+</div>
