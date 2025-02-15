@@ -1,14 +1,23 @@
-import { Component } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import {IniSesPageComponent} from './Usuario/inicioSesion/ini-ses-page/ini-ses-page.component';
+import {UsuarioService} from './Usuario/service/usuario.service';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, IniSesPageComponent],
+  imports: [RouterOutlet],
   standalone: true,
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
-export class AppComponent {
-  title = 'Techforb-challenge';
+export class AppComponent implements OnInit {
+
+  constructor(private authService: UsuarioService) {}
+
+  ngOnInit() {
+    setInterval(() => {
+      this.authService.checkSession();
+    }, 60000); // Verificar cada minuto
+  }
+
+
 }

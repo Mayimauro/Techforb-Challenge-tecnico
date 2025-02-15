@@ -4,6 +4,8 @@ import {UsuarioService} from '../../service/usuario.service';
 import {UsuarioInterface} from '../../interface/usuario.interface';
 import {NgIf} from '@angular/common';
 import {CredencialesInterface} from '../../interface/credenciales.interface';
+import {routes} from '../../../app.routes';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-ini-ses-form',
@@ -20,6 +22,7 @@ export class IniSesFormComponent {
 
   usuarioService= inject(UsuarioService);
   fb = inject(FormBuilder);
+  router = inject(Router);
   mostrarContrasena=false;
   mostrarRegistrarseForm= false
 
@@ -57,6 +60,8 @@ export class IniSesFormComponent {
 
     this.usuarioService.login(credenciales).subscribe(response => {
       console.log("inicio de sesion exitoso.");
+      this.router.navigate(['/home']);
+
     });
 
   }

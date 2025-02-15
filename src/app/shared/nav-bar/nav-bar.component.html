@@ -1,1 +1,20 @@
-<p>nav-bar works!</p>
+<nav class="navbar">
+  <div class="navbar-container">
+    <!-- Logo o elementos del navbar -->
+    <div class="logo">
+      <a href="/home">Mi Aplicación</a>
+    </div>
+
+    <!-- Menú de navegación u otros enlaces -->
+    <div class="nav-links">
+      <a href="/home">Inicio</a>
+      <a href="/profile">Perfil</a>
+      <a href="/settings">Configuración</a>
+    </div>
+
+    <div class="user-info">
+      <span>Bienvenido {{ usuario }}!,</span>
+      <span> la sesion expira el dia  {{ fechaExpiracion }}</span>
+    </div>
+  </div>
+</nav>

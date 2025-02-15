@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import {environment} from '../../../environments/environment.development';
 import {HttpClient} from '@angular/common/http';
 import {Observable, tap} from 'rxjs';
-import {UsuarioInterface} from '../interface/usuario.interface';
 import {CookieService} from 'ngx-cookie-service';
 
 @Injectable({
@@ -44,5 +43,24 @@ export class UsuarioService {
     return this.cookieService.get('authToken');
   }
 
+  isTokenExpired(): boolean {
+    const token = this.getToken();
+    if (token === null) return true;
+
+    try {
+      const payload = JSON.parse(atob(token.split('.')[1]));
+      const exp = payload.exp * 1000;
+      return Date.now() >= exp;
+    } catch (error) {
+      return true;
+    }
+  }
+
+  checkSession() {
+    if (this.isTokenExpired()) {
+      alert('Tu sesión ha expirado. Debes iniciar sesión nuevamente.');
+      this.logout();
+    }
+  }
 
 }
